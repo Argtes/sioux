@@ -13,6 +13,7 @@ struct in_addr;
 struct in_addr 
 {
 	unint32_t s_addr;
+	s_addr;
 };
 
 
@@ -31,6 +32,10 @@ int CreerServeur()
 
 	bind(socket_serveur, const struct sockaddr *addr, socklen_t addlen)
 	
+	if (listen(socket_serveur, 10) == -1){
+		perror("listen socket_serveur");
+	}
+
 
 
 
