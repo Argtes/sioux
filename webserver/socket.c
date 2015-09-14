@@ -1,26 +1,15 @@
 #include <stdio.h>
 #include <string.h>
+#include "socket.h"
+#include <arpa/inet.h>
 #include <sys/types.h>
 #include <sys/socket.h>
 
-struct sockaddr_in 
+int CreerServeur(int port)
 {
-sa_family_t sin_family;
-in_port_t sin_port;
-struct in_addr;
-};
-
-struct in_addr 
-{
-	unint32_t s_addr;
-};
-
-
-
-int CreerServeur()
-{
+	port = 8080;
 	int socket_serveur;
-	socket_serveur = socket(AF_INET, SDCK_STREAM, 0);
+	socket_serveur = socket(AF_INET, SOCK_STREAM, 0);
 	
 	if (socket_serveur == -1)
 	{
@@ -31,8 +20,8 @@ int CreerServeur()
 
 	struct sockaddr_in saddr;
 	saddr.sin_family = AF_INET;
-	saddr.sin_port = htons(8080);
-	saddr.sin_addr.s_addr = INADDR8ANY;
+	saddr.sin_port = htons(port);
+	saddr.sin_addr.s_addr = INADDR_ANY;
 
 	if (bind(socket_serveur, (struct sockaddr *)&saddr, sizeof(saddr)) == -1)
 	{
