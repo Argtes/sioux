@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <string.h>
-
+#include <sys/types.h>
+#include <sys/socket.h>
 
 int CreerClient()
 {
@@ -13,3 +14,5 @@ int CreerClient()
 	}
 	const char *message_bienvenue = "bonjour, bienvenue sur mon serveur\n";
 	write(socket_client, message_bienvenue, strlen(message_bienvenue));
+	return 0;
+}
