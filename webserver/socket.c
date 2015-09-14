@@ -3,10 +3,21 @@
 #include <sys/types.h>
 #include <sys/socket.h>
 
+struct sockaddr_in 
+{
+sa_family_t sin_family;
+in_port_t sin_port;
+struct in_addr;
+};
+
+struct in_addr 
+{
+	unint32_t s_addr;
+};
 
 
-//int socket(int domain, int type, int protocol);
-int main(int argc, char **argv)
+
+int CreerServeur()
 {
 	int socket_serveur;
 	socket_serveur = socket(AF_INET, SDCK_STREAM, 0);
@@ -18,10 +29,8 @@ int main(int argc, char **argv)
 
 	}
 
-	int bind(int sockfd, const struct sockaddr *addr, socklen_t addlen)
-	{
-		/* data */
-	}
+	bind(socket_serveur, const struct sockaddr *addr, socklen_t addlen)
+	
 
 
 
