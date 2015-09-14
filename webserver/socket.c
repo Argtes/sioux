@@ -13,7 +13,6 @@ struct in_addr;
 struct in_addr 
 {
 	unint32_t s_addr;
-	s_addr;
 };
 
 
@@ -30,7 +29,17 @@ int CreerServeur()
 
 	}
 
-	bind(socket_serveur, const struct sockaddr *addr, socklen_t addlen)
+	struct sockaddr_in saddr;
+	saddr.sin_family = AF_INET;
+	saddr.sin_port = htons(8080);
+	saddr.sin_addr.s_addr = INADDR8ANY;
+
+	if (bind(socket_serveur, (struct sockaddr *)&saddr, sizeof(saddr)) == -1)
+	{
+		perror("bind socket_serveur");
+	}	
+	
+
 	
 	if (listen(socket_serveur, 10) == -1){
 		perror("listen socket_serveur");
