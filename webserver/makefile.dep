@@ -1,3 +1,3 @@
 socket.o: socket.c socket.h
-client.o: client.c
+client.o: client.c socket.h
 main.o: main.c
