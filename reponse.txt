@@ -1,0 +1,8 @@
+1)il faut attendre quelques secondes avant de le relancer				Reponses
+
+2) la commande s'effectue mais rien ne s'affiche dans la console
+
+3) ca ne fonctionne pas (:: est une ipv6 et notre serveur ne le gere pas [encore?]
+
+4) le serveur se quitte lorsque le 2 eme client se connecte.
+le serveur n'est pas encore capable de gerer plusieurs clients
