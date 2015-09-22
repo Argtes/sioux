@@ -9,6 +9,9 @@ int creer_serveur(int port)
 {
 	port = 8080;
 	int socket_serveur;
+//	int optval =1;
+	//int setsockopt(int socket, int level, int option_name, const void *option_value, socklen_t option_len);
+
 	socket_serveur = socket(AF_INET, SOCK_STREAM, 0);
 	
 	if (socket_serveur == -1)
@@ -22,7 +25,10 @@ int creer_serveur(int port)
 	saddr.sin_family = AF_INET;
 	saddr.sin_port = htons(port);
 	saddr.sin_addr.s_addr = INADDR_ANY;
-
+/*
+	if (setsockopt(socket_serveur, SQL_SOCKET, SO_REUSEADDR, &optval, sizeof(int)) == -1)
+		perror("Can not set SO_REUSEADDR option");
+*/
 	if (bind(socket_serveur, (struct sockaddr *)&saddr, sizeof(saddr)) == -1)
 	{
 		perror("bind socket_serveur");
