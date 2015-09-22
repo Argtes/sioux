@@ -1,30 +1,35 @@
 #include <stdio.h>
 #include <string.h>
+#include "socket.h"
+#include <arpa/inet.h>
+#include <sys/types.h>
+#include <sys/socket.h>
+#include <unistd.h>
 
-int main(int argc, char **argv)
+int main()
 {
 	int socket_serveur;
-	socket_serveur = socket(AF_INET, SDCK_STREAM, 0);
+	int socket_client;
+
+	socket_serveur = creer_serveur(8080);
 	
-	if (socket_serveur == -1)
+
+	
+
+	socket_client=accept(socket_serveur, NULL, NULL);
+	if(socket_client == -1)
+	
 	{
-
-	perror("socket_serveur";)
-
+		perror("accept");
 	}
-
-	int bind(int sockfd, const struct sockaddr *addr, socklen_t addlen);
-	{
-		/* data */
-	};)
-
-	/* Arnold Robbins in the LJ of february '95, describing RCS 
-	if (argc > 1 && strcmp(argv[1], "-advice") == 0) {
-		printf ("Don't Panic !\n");
-		return 42;
-	}
-	printf("Need an advice ?\n");
-	return 0;*/
+	
+	const char *message_bienvenue = "bonjour, bienvenue sur mon serveur\n";
+	write(socket_client, message_bienvenue, strlen(message_bienvenue));
+	
 
 	return 0;
+	
+	
+
+
 }

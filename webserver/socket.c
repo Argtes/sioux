@@ -5,7 +5,7 @@
 #include <sys/types.h>
 #include <sys/socket.h>
 
-int CreerServeur(int port)
+int creer_serveur(int port)
 {
 	port = 8080;
 	int socket_serveur;
@@ -37,7 +37,7 @@ int CreerServeur(int port)
 
 
 
-	return 0;
+	return socket_serveur;
 }
 
 
