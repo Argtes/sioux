@@ -5,6 +5,7 @@
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <unistd.h>
+//#include <sys/wait.h>
 
 int main()
 {
@@ -24,6 +25,9 @@ int main()
 	}
 	
 	const char *message_bienvenue = "bonjour, bienvenue sur mon serveur\n";
+
+	sleep(3);
+
 	write(socket_client, message_bienvenue, strlen(message_bienvenue));
 	
 
