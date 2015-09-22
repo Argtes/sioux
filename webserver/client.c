@@ -9,6 +9,7 @@ int CreerClient()
 {
 
 	int socket_client;
+	int socket_serveur;
 	socket_client=accept(socket_serveur, NULL, NULL);
 	if(socket_client == -1)
 	{
