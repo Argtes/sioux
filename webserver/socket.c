@@ -48,5 +48,13 @@ int creer_serveur(int port)
 	return socket_serveur;
 }
 
+sighandler_t signal(int signum ,sighandler_t handler);
 
+void i nitialiser_signaux ( void ){
 
+	if ( signal ( SIGPIPE , SIG_IGN ) == SIG_ERR )
+	{
+	perror ( " signal " );
+	}
+	
+}
