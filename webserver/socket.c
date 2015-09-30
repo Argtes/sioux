@@ -12,7 +12,6 @@ int creer_serveur(int port)
 	port = 8080;
 	int socket_serveur;
 	int optval =1;
-	//int setsockopt(int socket, int level, int option_name, const void *option_value, socklen_t option_len);
 
 	socket_serveur = socket(AF_INET, SOCK_STREAM, 0);
 	
@@ -68,3 +67,4 @@ void initialiser_signaux(void)
 		perror("sigaction(SIGCHLD)");
 	}
 }
+

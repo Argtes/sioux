@@ -24,12 +24,27 @@ int main()
 		perror("accept");
 	}
 	
-	const char *message_bienvenue = "bonjour, bienvenue sur mon serveur\n";
 
-	sleep(3);
+	int pid = fork();
+		if (pid == 0){
 
-	write(socket_client, message_bienvenue, strlen(message_bienvenue));
-	
+			const char *message_bienvenue = "bonjour, bienvenue sur mon serveur\n";
+
+	//sleep(3);
+
+			write(socket_client, message_bienvenue, strlen(message_bienvenue));
+			
+			FILE * f;
+			f = fdopen(socket_client, "w+");
+			while(fgets(message, sizeof(message), f) != NULL){
+				fprintf(f, "<Sioux> %s", message);
+			}
+		}
+		else{
+			close(socket_client);
+		}
+
+/*	
 	while(1){
 
 		int i= read(socket_client, message, 1023);
@@ -41,6 +56,7 @@ int main()
 		}
 		
 	}
+*/	
 	return 0;
 	
 	
