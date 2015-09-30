@@ -9,7 +9,7 @@
 
 int creer_serveur(int port)
 {
-	port = 8080;
+
 	int socket_serveur;
 	int optval =1;
 

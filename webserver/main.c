@@ -5,45 +5,45 @@
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <unistd.h>
-//#include <sys/wait.h>
+
+
+int socket_serveur;
+int socket_client;
+char message[1024]= ""; 
 
 int main()
 {
-	int socket_serveur;
-	int socket_client;
-	char message[1024]= "";
 	socket_serveur = creer_serveur(8080);
-	
+	initialiser_signaux();
 
-	
+	while (1){
+		socket_client=accept(socket_serveur, NULL, NULL);
+		if(socket_client == -1)
+		
+		{
+			perror("accept");
+		}
+		
 
-	socket_client=accept(socket_serveur, NULL, NULL);
-	if(socket_client == -1)
-	
-	{
-		perror("accept");
-	}
-	
+		int pid = fork();
+			if (pid == 0){
 
-	int pid = fork();
-		if (pid == 0){
 
-			const char *message_bienvenue = "bonjour, bienvenue sur mon serveur\n";
+				const char *message_bienvenue = "bonjour, bienvenue sur mon serveur\n";
 
-	//sleep(3);
 
-			write(socket_client, message_bienvenue, strlen(message_bienvenue));
+				write(socket_client, message_bienvenue, strlen(message_bienvenue));
 			
-			FILE * f;
-			f = fdopen(socket_client, "w+");
-			while(fgets(message, sizeof(message), f) != NULL){
-				fprintf(f, "<Sioux> %s", message);
+				FILE * f;
+				f = fdopen(socket_client, "w+");
+				while(fgets(message, sizeof(message), f) != NULL){
+					printf("<Sioux> %s", message);
+				}
 			}
-		}
-		else{
-			close(socket_client);
-		}
-
+			else{
+				close(socket_client);
+			}
+	}
 /*	
 	while(1){
 
