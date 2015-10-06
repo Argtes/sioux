@@ -29,7 +29,7 @@ int main()
 			if (pid == 0){
 
 
-				const char *message_bienvenue = "onjour, bienvenue sur mon serveur\n";
+				const char *message_bienvenue = "bonjour, bienvenue sur mon serveur\n";
 
 
 				write(socket_client, message_bienvenue, strlen(message_bienvenue));
