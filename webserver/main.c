@@ -36,6 +36,7 @@ int main()
 			
 				FILE * f;
 				f = fdopen(socket_client, "w+");
+				
 				while(fgets(message, sizeof(message), f) != NULL){
 					printf("<Sioux> %s", message);
 				}
@@ -44,21 +45,22 @@ int main()
 				close(socket_client);
 			}
 
-			
 	}
-/*	
-	while(1){
+/*
+		while(1){
 
-		int i= read(socket_client, message, 1023);
-		if(i != -1){
-			write(socket_client, message, i);
-		}
-		else{
-			write(socket_client, message, strlen(message));
-		}
+			int i= read(socket_client, message, 1023);
+			if(i != -1){
+				write(socket_client, message, i);
+			}
+			else{
+				write(socket_client, message, strlen(message));
+			}
 		
-	}
-*/	
+		}
+		*/	
+	
+	
 	return 0;
 	
 	
