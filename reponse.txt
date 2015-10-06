@@ -1,4 +1,9 @@
-1)il faut attendre quelques secondes avant de le relancer				Reponses
+												Réponses aux différentes question du pdf m4101c (Serveur web)
+
+
+Chapitre 3 :
+
+1)il faut attendre quelques secondes avant de le relancer				
 
 2) la commande s'effectue mais rien ne s'affiche dans la console
 
@@ -6,3 +11,21 @@
 
 4) le serveur se quitte lorsque le 2 eme client se connecte.
 le serveur n'est pas encore capable de gerer plusieurs clients
+
+
+Chapitre 5 :
+5.2.1 
+
+3)
+
+GET / HTTP/1.1
+User-Agent: curl/7.38.0
+Host: localhost:8080
+Accept: */*
+
+4)
+
+GET --> Method
+HTTP --> Options
+1.1 --> Version
+
