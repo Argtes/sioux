@@ -5,12 +5,14 @@
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <unistd.h>
-#include "commande.h"
 #include "string.h"
 
 int socket_serveur;
 int socket_client;
-char message[1024]= ""; 
+char message[1024]= "";
+char strToken[1024]="";
+int cptToken=0; 
+int curlOK= 1;
 
 int main()
 {
@@ -38,7 +40,31 @@ int main()
 				FILE * f;
 				f = fdopen(socket_client, "w+");
 				
+				if(fgets(message, sizeof(message), f)){
+					strcpy(strToken, message);
+					char * token= strtok(message, " ");;
+					while(token){
+					cptToken++;
+					if(!(cptToken == 1 && strcmp(token,"GET")==0 )){
+						curlOK= 0;
+
+					}
+
+					if(!((cptToken == 3) && ((strcmp(token, "HTTP/1.1\r\n")==0) || (strcmp(token, "HTTP/1.0\r\n")==0)))){
+						curlOK= 0;
+
+					}
+
+					strtok(NULL, " ");
+
+}
+
+				}
+/*
+
+
 				while(fgets(message, sizeof(message), f) != NULL){
+
 					printf("<Sioux> %s", message);
 
 					if(strncmp(message,"GET ",4) == 0){
@@ -48,8 +74,8 @@ int main()
 
 					}
 
-				}
-			}
+				}*/
+			
 			else{
 				close(socket_client);
 			}
@@ -77,4 +103,4 @@ int main()
 
 
 }
-		
+		}
