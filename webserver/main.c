@@ -5,6 +5,7 @@
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <unistd.h>
+#include "commande.h"
 
 
 int socket_serveur;
@@ -39,13 +40,19 @@ int main()
 				
 				while(fgets(message, sizeof(message), f) != NULL){
 					printf("<Sioux> %s", message);
+
+					if(my_strcmp(message,"GET ",4) == 0){
+						printf("ok ma guele c'est ok\n");
+					}
+
 				}
 			}
 			else{
 				close(socket_client);
 			}
-
+//utiliser str [strtok]
 	}
+
 /*
 		while(1){
 
