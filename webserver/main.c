@@ -29,40 +29,34 @@ int main()
 		
 
 		int pid = fork();
-			if (pid == 0){
+		if (pid == 0){
 
 
-				const char *message_bienvenue = "bonjour, bienvenue sur mon serveur\n";
+			const char *message_bienvenue = "bonjour, bienvenue sur mon serveur\n";
 
 
-				write(socket_client, message_bienvenue, strlen(message_bienvenue));
+			write(socket_client, message_bienvenue, strlen(message_bienvenue));
 			
-				FILE * f;
-				f = fdopen(socket_client, "w+");
+			FILE * f;
+			f = fdopen(socket_client, "w+");
 				
-				if(fgets(message, sizeof(message), f)){
-					strcpy(strToken, message);
-					char * token= strtok(message, " ");;
-					while(token){
+			if(fgets(message, sizeof(message), f)){
+				strcpy(strToken, message);
+				char * token= strtok(message, " ");
+				while(token){
 					cptToken++;
 					if(!(cptToken == 1 && strcmp(token,"GET")==0 )){
 						curlOK= 0;
-
 					}
 
 					if(!((cptToken == 3) && ((strcmp(token, "HTTP/1.1\r\n")==0) || (strcmp(token, "HTTP/1.0\r\n")==0)))){
 						curlOK= 0;
-
 					}
-
 					strtok(NULL, " ");
-
-}
-
 				}
+
+			}
 /*
-
-
 				while(fgets(message, sizeof(message), f) != NULL){
 
 					printf("<Sioux> %s", message);
@@ -75,12 +69,10 @@ int main()
 					}
 
 				}*/
-			
 			else{
 				close(socket_client);
 			}
-//utiliser str [strtok]
-	}
+		}
 
 /*
 		while(1){
@@ -102,5 +94,5 @@ int main()
 	
 
 
+	}
 }
-		}
