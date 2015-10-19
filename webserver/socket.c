@@ -7,17 +7,14 @@
 #include <signal.h>
 #include <sys/wait.h>
 
-int creer_serveur(int port)
-{
+int creer_serveur(int port){
 
 	int socket_serveur;
 	int optval =1;
 
 	socket_serveur = socket(AF_INET, SOCK_STREAM, 0);
 	
-	if (socket_serveur == -1)
-	{
-
+	if (socket_serveur == -1){
 	perror("socket_serveur");
 
 	}
@@ -28,36 +25,27 @@ int creer_serveur(int port)
 	saddr.sin_addr.s_addr = INADDR_ANY;
 
 
-	if (setsockopt(socket_serveur, SOL_SOCKET, SO_REUSEADDR, &optval, sizeof(int)) == -1)
+	if (setsockopt(socket_serveur, SOL_SOCKET, SO_REUSEADDR, &optval, sizeof(int)) == -1){
 		perror("Can not set SO_REUSEADDR option");
-
-
-	if (bind(socket_serveur, (struct sockaddr *)&saddr, sizeof(saddr)) == -1)
-	{
+	}
+	if (bind(socket_serveur, (struct sockaddr *)&saddr, sizeof(saddr)) == -1){
 		perror("bind socket_serveur");
 	}	
-	
 
-	
 	if (listen(socket_serveur, 10) == -1){
 		perror("listen socket_serveur");
 	}
-
-
-
-
 	return socket_serveur;
+
 }
 
-void traitement_signal(int sig)
-{
+void traitement_signal(int sig){
 	printf("Signal %d reçu\n", sig);
 	int status;
-	waitpid(-1, &status, WUNTRACED);
+	waitpid(-1, &status, WNOHANG);
 }
 
-void initialiser_signaux(void)
-{
+void initialiser_signaux(void){
 	struct sigaction sa;
 	sa.sa_handler = traitement_signal;
 	sigemptyset(&sa.sa_mask);
