@@ -12,7 +12,6 @@ int socket_client;
 char message[1024]= "";
 char strToken[1024]="";
 int cptToken=0; 
-int curlOK= 1;
 
 
 //en 8.2 git tag stats => 20
@@ -48,14 +47,13 @@ int main(){
         
         cptToken++;
         if(!(cptToken == 1 && strcmp(token,"GET")==0 )){
-          curlOK= 0;
-          printf("%s bonjour\n", token);
-
+          printf("HTTP/1.1 400 Bad Request \nConnection: close \nContent-Length: 17 \n400 Bad request\n");
+          
         }
 
         if(!((cptToken == 3) && ((strcmp(token, "HTTP/1.1\r\n")==0) || (strcmp(token, "HTTP/1.0\r\n")==0)))){
-          curlOK= 0;
-
+          printf("HTTP/1.1 400 Bad Request \nConnection: close \nContent-Length: 17 \n400 Bad request\n");
+          
         }
 
         token = strtok(NULL, " ");
