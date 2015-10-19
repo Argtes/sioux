@@ -1,17 +1,20 @@
 #include <stdio.h>
 #include <string.h>
 #include "socket.h"
-#include <arpa/inet.h>
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <unistd.h>
 #include "string.h"
+#include <arpa/inet.h>
+#include <netinet/in.h>
+#include <netinet/ip.h>
 
 int socket_serveur;
 int socket_client;
 char message[1024]= "";
 char strToken[1024]="";
-int cptToken=0; 
+int cptToken=0;
+http_request testGet = {HTTP_GET,0,0,NULL};
 
 
 //en 8.2 git tag stats => 20
@@ -54,6 +57,7 @@ int main(){
           }
 
           token = strtok(NULL, " ");
+
         }
         return fclose(f);
 

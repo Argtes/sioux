@@ -54,5 +54,75 @@ void initialiser_signaux(void){
 	{
 		perror("sigaction(SIGCHLD)");
 	}
+
+
+//--------------------------------------------------------------------------------------------------------------//
+
+	enum http_method{
+		HTTP_GET,
+ 		HTTP_UNSUPPORTED,
+	};
+
+	typedef struct{
+  		enum http_method method;
+  		int major_version;
+  		int minor_version;
+  		char *url;
+	} http_request;
+
+	char *fgets_or_exit(char *buffer, int size, FILE *stream) {
+  		if( fgets(buffer, size, stream) == NULL){ 
+    		printf("Erreur!\n");
+    		exit(1); 
+  		}
+  		return "";
+	}
+
+
+	// a finir
+	void parse_http_request (const char *request_line, http_request *request){
+		strcpy(strToken, message);
+        char * token = strtok(message, " ");;
+        
+        while(token){
+          
+          cptToken++;
+          if(!(cptToken == 1 && strcmp(token,"GET")==0 )){
+            write(socket_client, message_BadRequest, strlen(message_BadRequest));
+            
+          }else if(!((cptToken == 3) && ((strcmp(token, "HTTP/1.1\r\n")==0) || (strcmp(token, "HTTP/1.0\r\n")==0)))){
+            write(socket_client, message_BadRequest, strlen(message_BadRequest));
+          }
+
+          token = strtok(NULL, " ");
+
+        }
+    }
+
+
+	void skip_headers(FILE *client){
+	  char token[1024];
+	  while(fgets(token,1024,client)!=NULL && token[0] != '\r' && token[0]!= '\n' );
+	}
+
+	void send_status(FILE *client, int code, const char *reason_phrase){
+ 	 char *tmp=" ";
+ 	 tmp =strdup(reason_phrase);
+ 	 fprintf(client,"%d : %s",code, tmp);
+ 	 fflush(client);
+	}
+
+	void send_response(FILE *client, int code, const char *reason_phrase, const char *message_body){
+  		send_status(client,code,reason_phrase);
+ 		fprintf(client,"%d \n %s\n",(int)strlen(message_body),message_body);
+ 		fflush(client);
+	}
+
+
+    //chap 7 fail pdf
+  	/*char *rewrite_url(char *url){
+  		return strtok(url,"?");
+    }*/
+
 }
 
