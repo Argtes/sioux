@@ -116,6 +116,16 @@ void initialiser_signaux(void){
   		send_status(client,code,reason_phrase);
  		fprintf(client,"%d \n %s\n",(int)strlen(message_body),message_body);
  		fflush(client);
+ 		/* a ajouter dans le main.c
+ 		if (bad_request)
+			send_response(client, 400, "Bad Request" ,"Bad request\r\n" );
+		else if(request.method == HTTP_UNSUPPORTED)
+			send_response(client, 405, "Method Not Allowed" ,"Method Not Allowed\r\n");
+		else if(strcmp(request.url, "/") == 0)
+			send_response(client, 200, "OK" ,motd );
+		else
+			send_response(client, 404, "Not Found", "Not Found\r\n");
+*/
 	}
 
 
