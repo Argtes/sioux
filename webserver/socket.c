@@ -63,24 +63,24 @@ void initialiser_signaux(void){
  		HTTP_UNSUPPORTED,
 	};
 
-	typedef struct{
+	/*typedef struct{
   		enum http_method method;
   		int major_version;
   		int minor_version;
   		char *url;
-	} http_request;
+	} http_request;*/
 
 	char *fgets_or_exit(char *buffer, int size, FILE *stream) {
   		if( fgets(buffer, size, stream) == NULL){ 
     		printf("Erreur!\n");
-    		exit(1); 
+    		//exit(1); 
   		}
   		return "";
 	}
 
 
 	// a finir
-	void parse_http_request (const char *request_line, http_request *request){
+	/*void parse_http_request (const char *request_line, http_request *request){
 		strcpy(strToken, message);
         char * token = strtok(message, " ");;
         
@@ -97,7 +97,7 @@ void initialiser_signaux(void){
           token = strtok(NULL, " ");
 
         }
-    }
+    }*/
 
 
 	void skip_headers(FILE *client){

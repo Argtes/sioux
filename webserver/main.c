@@ -14,7 +14,7 @@ int socket_client;
 char message[1024]= "";
 char strToken[1024]="";
 int cptToken=0;
-http_request testGet = {HTTP_GET,0,0,NULL};
+//http_request testGet = {HTTP_GET,0,0,NULL};
 
 
 //en 8.2 git tag stats => 20
