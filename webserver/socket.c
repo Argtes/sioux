@@ -60,16 +60,18 @@ void initialiser_signaux(void){
 
 	enum http_method{
 		HTTP_GET,
+		/*j'ai ajouté cette ligne pour les autre methodes http*/
+		HTTP_POST,
  		HTTP_UNSUPPORTED,
 	};
 
-	/*typedef struct{
+/*	typedef struct{
   		enum http_method method;
   		int major_version;
   		int minor_version;
   		char *url;
-	} http_request;*/
-
+	}http_request;
+*/
 	char *fgets_or_exit(char *buffer, int size, FILE *stream) {
   		if( fgets(buffer, size, stream) == NULL){ 
     		printf("Erreur!\n");
@@ -133,6 +135,13 @@ void initialiser_signaux(void){
   	/*char *rewrite_url(char *url){
   		return strtok(url,"?");
     }*/
+
+/*
+	int check_and_open (const char *url , const char *document_root){
+	
+
+	}
+*/
 
 }
 
